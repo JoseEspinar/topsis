@@ -214,10 +214,20 @@ exports.getBest = function getBest(m, w, ia) {
     indexedPerformanceScore.push(dp);
   }
 
+// Sorting function
+  function sortedBy(key) {
+    return function(a, b) {
+      if (a[key] < b[key]) return 1;
+      if (a[key] > b[key]) return -1;
+      return 0;
+    };
+  }
 
+  // Sort the indexed performance scores
   const rankedPerformanceScore = indexedPerformanceScore.sort(sortedBy('ps'));
 
-  return rankedPerformanceScore[0].data;
+  // Return the sorted list of players
+  return rankedPerformanceScore.map(player => player.data);
 }; // TERMINA FUNCION
 
 
